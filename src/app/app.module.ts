@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     HomeComponent,
     NavbarComponent,
     LoginComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
