@@ -1,8 +1,8 @@
 <div class="w-75 mx-auto py-4">
   <h3>Register Now</h3>
 
-  <form (NgSubmit)="registerForm" [formGroup]="registerForm">
-    <div class="form-group ">
+  <form (NgSubmit)="(registerForm)" [formGroup]="registerForm">
+    <div class="form-group">
       <label for="name">Name :</label>
       <input
         type="text"
@@ -12,12 +12,18 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('name')?.errors || registerForm.touched"
+        *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched"
         class="alert alert-danger"
       >
-        <p class="m-0" *ngIf="registerForm.get('name')?.getError('required')">name is required</p>
-        <p class="m-0"></p>
-        <p class="m-0"></p>
+        <p class="m-0 p-sm" *ngIf="registerForm.get('name')?.getError('required')">
+          name is required
+        </p>
+        <p class="m-0" *ngIf="registerForm.get('name')?.getError('minlength')">
+          name minlength is 3
+        </p>
+        <p class="m-0" *ngIf="registerForm.get('name')?.getError('maxlength')">
+          name maxlength is 10
+        </p>
       </div>
     </div>
 
@@ -31,12 +37,15 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('name')?.errors || registerForm.touched"
+        *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched"
         class="alert alert-danger"
       >
-        <p class="m-0"></p>
-        <p class="m-0"></p>
-        <p class="m-0"></p>
+        <p class="m-0" *ngIf="registerForm.get('email')?.getError('required')">
+          email is required
+        </p>
+        <p class="m-0" *ngIf="registerForm.get('email')?.getError('email')">
+          enter valid email
+        </p>
       </div>
     </div>
 
@@ -50,13 +59,22 @@
         class="form-control my-2"
       />
       <div
-      *ngIf="registerForm.get('name')?.errors || registerForm.touched"
-      class="alert alert-danger"
-    >
-      <p class="m-0"></p>
-      <p class="m-0"></p>
-      <p class="m-0"></p>
-    </div>
+        *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched"
+        class="alert alert-danger"
+      >
+        <p
+          class="m-0"
+          *ngIf="registerForm.get('password')?.getError('required')"
+        >
+          password is required
+        </p>
+        <p
+          class="m-0"
+          *ngIf="registerForm.get('password')?.getError('pattern')"
+        >
+          password must have at least one uppercase character
+        </p>
+      </div>
     </div>
 
     <div class="form-group">
@@ -69,12 +87,21 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('name')?.errors || registerForm.touched"
+        *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched"
         class="alert alert-danger"
       >
-        <p class="m-0"></p>
-        <p class="m-0"></p>
-        <p class="m-0"></p>
+        <p
+          class="m-0"
+          *ngIf="registerForm.get('rePassword')?.getError('required')"
+        >
+          password is required
+        </p>
+        <p
+          class="m-0"
+          *ngIf="registerForm.get('rePassword')?.getError('pattern')"
+        >
+          password must have at least one uppercase character
+        </p>
       </div>
     </div>
 
@@ -88,17 +115,27 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('name')?.errors || registerForm.touched"
+        *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched"
         class="alert alert-danger"
       >
-        <p class="m-0"></p>
-        <p class="m-0"></p>
-        <p class="m-0"></p>
+        <p class="m-0" *ngIf="registerForm.get('phone')?.getError('required')">
+          phone is required
+        </p>
+        <p class="m-0" *ngIf="registerForm.get('phone')?.getError('pattern')">
+          enter valid phone
+        </p>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success d-block ms-auto my-3">
-      register
+    <button
+      type="submit"
+      [disabled]="registerForm.invalid"
+      class="btn btn-success d-block ms-auto my-3"
+    >
+    <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+     <div *ngIf="!isLoading">register</div> 
     </button>
   </form>
 </div>
