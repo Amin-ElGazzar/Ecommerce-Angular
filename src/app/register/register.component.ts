@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   isLoading: boolean = false;
-
+  backendError: string = '';
   constructor(private _authService: AuthService, private _router: Router) {}
 
   registerForm: FormGroup = new FormGroup({
@@ -49,6 +49,7 @@ export class RegisterComponent {
         },
         error: (err) => {
           this.isLoading = false;
+          this.backendError = err.error.error.mes;
           console.log(err);
         },
       });

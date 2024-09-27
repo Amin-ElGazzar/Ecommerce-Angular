@@ -1,6 +1,9 @@
 <div class="w-75 mx-auto py-4">
   <h3>Register Now</h3>
 
+  <div class="alert alert-danger" *ngIf="backendError.length > 0">
+    {{ backendError }}
+  </div>
   <form (NgSubmit)="(registerForm)" [formGroup]="registerForm">
     <div class="form-group">
       <label for="name">Name :</label>
@@ -12,10 +15,15 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched"
+        *ngIf="
+          registerForm.get('name')?.errors && registerForm.get('name')?.touched
+        "
         class="alert alert-danger"
       >
-        <p class="m-0 p-sm" *ngIf="registerForm.get('name')?.getError('required')">
+        <p
+          class="m-0 p-sm"
+          *ngIf="registerForm.get('name')?.getError('required')"
+        >
           name is required
         </p>
         <p class="m-0" *ngIf="registerForm.get('name')?.getError('minlength')">
@@ -37,7 +45,10 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched"
+        *ngIf="
+          registerForm.get('email')?.errors &&
+          registerForm.get('email')?.touched
+        "
         class="alert alert-danger"
       >
         <p class="m-0" *ngIf="registerForm.get('email')?.getError('required')">
@@ -59,7 +70,10 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched"
+        *ngIf="
+          registerForm.get('password')?.errors &&
+          registerForm.get('password')?.touched
+        "
         class="alert alert-danger"
       >
         <p
@@ -87,7 +101,10 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched"
+        *ngIf="
+          registerForm.get('rePassword')?.errors &&
+          registerForm.get('rePassword')?.touched
+        "
         class="alert alert-danger"
       >
         <p
@@ -115,7 +132,10 @@
         class="form-control my-2"
       />
       <div
-        *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched"
+        *ngIf="
+          registerForm.get('phone')?.errors &&
+          registerForm.get('phone')?.touched
+        "
         class="alert alert-danger"
       >
         <p class="m-0" *ngIf="registerForm.get('phone')?.getError('required')">
@@ -132,10 +152,10 @@
       [disabled]="registerForm.invalid"
       class="btn btn-success d-block ms-auto my-3"
     >
-    <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+      <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
-     <div *ngIf="!isLoading">register</div> 
+      <div *ngIf="!isLoading">register</div>
     </button>
   </form>
 </div>

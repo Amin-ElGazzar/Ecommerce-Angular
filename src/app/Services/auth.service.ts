@@ -10,4 +10,8 @@ export class AuthService {
   register(model: object): Observable<any> {
     return this._httpClient.post('', model);
   }
+
+  login(model: object): Observable<any> {
+    return this._httpClient.post('', model);
+  }
 }
