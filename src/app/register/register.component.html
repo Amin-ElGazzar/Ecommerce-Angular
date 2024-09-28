@@ -18,10 +18,10 @@
         *ngIf="
           registerForm.get('name')?.errors && registerForm.get('name')?.touched
         "
-        class="alert alert-danger"
+        class="alert alert-danger py-2"
       >
         <p
-          class="m-0 p-sm"
+          class="m-0 "
           *ngIf="registerForm.get('name')?.getError('required')"
         >
           name is required
@@ -49,7 +49,7 @@
           registerForm.get('email')?.errors &&
           registerForm.get('email')?.touched
         "
-        class="alert alert-danger"
+        class="alert alert-danger py-2"
       >
         <p class="m-0" *ngIf="registerForm.get('email')?.getError('required')">
           email is required
@@ -74,7 +74,7 @@
           registerForm.get('password')?.errors &&
           registerForm.get('password')?.touched
         "
-        class="alert alert-danger"
+        class="alert alert-danger py-2"
       >
         <p
           class="m-0"
@@ -105,7 +105,7 @@
           registerForm.get('rePassword')?.errors &&
           registerForm.get('rePassword')?.touched
         "
-        class="alert alert-danger"
+        class="alert alert-danger py-2"
       >
         <p
           class="m-0"
@@ -136,7 +136,7 @@
           registerForm.get('phone')?.errors &&
           registerForm.get('phone')?.touched
         "
-        class="alert alert-danger"
+        class="alert alert-danger py-2"
       >
         <p class="m-0" *ngIf="registerForm.get('phone')?.getError('required')">
           phone is required

@@ -10,14 +10,15 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RegisterComponent } from './register/register.component';
+import { authGuard } from './Gards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'brands', component: BrandsComponent },
-  { path: 'categories', component: CategoriesComponent },
+  { path: 'home',canActivate:[authGuard], component: HomeComponent },
+  { path: 'about',canActivate:[authGuard], component: AboutComponent },
+  { path: 'cart',canActivate:[authGuard], component: CartComponent },
+  { path: 'brands',canActivate:[authGuard], component: BrandsComponent },
+  { path: 'categories',canActivate:[authGuard], component: CategoriesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', component: NotfoundComponent },

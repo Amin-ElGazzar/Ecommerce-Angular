@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { AuthService } from '../Services/auth.service';
 export class LoginComponent {
   isLoading: boolean = false;
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private _router: Router) {}
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
@@ -25,6 +26,9 @@ export class LoginComponent {
       this._authService.login(loginForm).subscribe({
         next: (res) => {
           this.isLoading = false;
+          localStorage.setItem('userToken', res.token);
+          this._authService.decodedToken();
+          this._router.navigate(['/home']);
         },
         error: (err) => {
           this.isLoading = false;

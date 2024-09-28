@@ -12,7 +12,7 @@
         placeholder="enter your email"
       />
       <div
-        class="alert alert-danger "
+        class="alert alert-danger py-2"
         *ngIf="
           loginForm.get('email')?.errors && loginForm.get('email')?.touched
         "
@@ -36,7 +36,7 @@
         formControlName="password"
       />
       <div
-        class="alert alert-danger "
+        class="alert alert-danger py-2 "
         *ngIf="
           loginForm.get('password')?.errors &&
           loginForm.get('password')?.touched
