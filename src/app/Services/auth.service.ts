@@ -1,3 +1,4 @@
+import { baseUrl } from './../Const/Environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,16 +12,16 @@ export class AuthService {
   userData = new BehaviorSubject(null);
 
   constructor(private _httpClient: HttpClient, private _router: Router) {
-    if (localStorage.getItem('userToken') !==null) {
-      this.decodedToken()
+    if (localStorage.getItem('userToken') !== null) {
+      this.decodedToken();
     }
   }
   register(model: object): Observable<any> {
-    return this._httpClient.post('', model);
+    return this._httpClient.post('${baseUrl}/api/v1/auth/signup', model);
   }
 
   login(model: object): Observable<any> {
-    return this._httpClient.post('', model);
+    return this._httpClient.post(`${baseUrl}/api/v1/auth/signin`, model);
   }
 
   decodedToken() {

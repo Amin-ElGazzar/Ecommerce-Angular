@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../Services/auth.service';
+import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,21 +23,23 @@ export class RegisterComponent {
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
       Validators.required,
-      Validators.pattern(/^[A-Z][a-z0-9]{5,10}$/),
+      Validators.minLength(3),
+      Validators.maxLength(14),
     ]),
-
     rePassword: new FormControl(null, [
       Validators.required,
-      Validators.pattern(/^[A-Z][a-z0-9]{5,10}$/),
+      Validators.minLength(3),
+      Validators.maxLength(14),
     ]),
-
     phone: new FormControl(null, [
       Validators.required,
-      Validators.pattern(/^01[0125][0-9]{8}$/),
+      Validators.pattern('01[0125][0-9]{8}'),
     ]),
   });
 
   handleRegister(registerForm: FormGroup) {
+    console.log('res');
+
     this.isLoading = true;
     if (registerForm.valid) {
       this._authService.register(registerForm.value).subscribe({
@@ -49,7 +51,7 @@ export class RegisterComponent {
         },
         error: (err) => {
           this.isLoading = false;
-          this.backendError = err.error.error.mes;
+          this.backendError = err.error.message;
           console.log(err);
         },
       });

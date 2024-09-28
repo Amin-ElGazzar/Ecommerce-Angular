@@ -1,17 +1,16 @@
 <div class="w-75 mx-auto py-4">
-  <h3>Register Now</h3>
+  <h3>Register</h3>
 
   <div class="alert alert-danger" *ngIf="backendError.length > 0">
     {{ backendError }}
   </div>
-  <form (NgSubmit)="(registerForm)" [formGroup]="registerForm">
+  <form (ngSubmit)="(registerForm)" [formGroup]="registerForm">
     <div class="form-group">
       <label for="name">Name :</label>
       <input
         type="text"
         formControlName="name"
         id="name"
-        placeholder="please enter name"
         class="form-control my-2"
       />
       <div
@@ -20,10 +19,7 @@
         "
         class="alert alert-danger py-2"
       >
-        <p
-          class="m-0 "
-          *ngIf="registerForm.get('name')?.getError('required')"
-        >
+        <p class="m-0" *ngIf="registerForm.get('name')?.getError('required')">
           name is required
         </p>
         <p class="m-0" *ngIf="registerForm.get('name')?.getError('minlength')">
@@ -41,7 +37,6 @@
         type="email"
         formControlName="email"
         id="email"
-        placeholder="please enter email"
         class="form-control my-2"
       />
       <div
@@ -66,7 +61,6 @@
         type="password"
         id="password"
         formControlName="password"
-        placeholder="please enter password"
         class="form-control my-2"
       />
       <div
@@ -82,11 +76,11 @@
         >
           password is required
         </p>
-        <p
-          class="m-0"
-          *ngIf="registerForm.get('password')?.getError('pattern')"
-        >
-          password must have at least one uppercase character
+        <p *ngIf="registerForm.get('password')?.getError('minlength')">
+          password min length is 3
+        </p>
+        <p *ngIf="registerForm.get('password')?.getError('maxlength')">
+          password max length is 14
         </p>
       </div>
     </div>
@@ -97,7 +91,6 @@
         type="password"
         id="rePassword"
         formControlName="rePassword"
-        placeholder="rewrite password"
         class="form-control my-2"
       />
       <div
@@ -128,7 +121,6 @@
         type="tel"
         id="phone"
         formControlName="phone"
-        placeholder="enter phone number"
         class="form-control my-2"
       />
       <div
@@ -148,14 +140,23 @@
     </div>
 
     <button
-      type="submit"
-      [disabled]="registerForm.invalid"
-      class="btn btn-success d-block ms-auto my-3"
+      *ngIf="!isLoading"
+      [disabled]="!registerForm.valid"
+      class="btn d-block bg-main ms-auto text-white border-0"
     >
-      <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div *ngIf="!isLoading">register</div>
+      submit
+    </button>
+    <button
+      *ngIf="isLoading"
+      class="btn d-block bg-main ms-auto text-white border-0"
+      type="button"
+      disabled
+    >
+      <span
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
     </button>
   </form>
 </div>

@@ -1,7 +1,9 @@
 <div class="w-75 mx-auto py-4">
-  <h3>LogIn Now</h3>
-
-  <form (NgSubmit)="handleLogin(loginForm)" [formGroup]="loginForm">
+  <h3>Login</h3>
+  <div class="alert alert-danger py-2" *ngIf="backendError.length > 0">
+    {{ backendError }}
+  </div>
+  <form (ngSubmit)="handleLogin(loginForm)" [formGroup]="loginForm">
     <div class="form-group">
       <label for="email">Email :</label>
       <input
@@ -9,7 +11,7 @@
         class="form-control my-2"
         id="email"
         formControlName="email"
-        placeholder="enter your email"
+      
       />
       <div
         class="alert alert-danger py-2"
@@ -32,7 +34,7 @@
         class="form-control my-2"
         type="password"
         id="password"
-        placeholder="write your password"
+       
         formControlName="password"
       />
       <div
@@ -51,11 +53,9 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success d-block ms-auto mt-3 px-4" [disabled]="loginForm.invalid">
-      <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div *ngIf="!isLoading">login</div>
+    <button *ngIf="!isLoading" [disabled]="!loginForm.valid" class="btn d-block bg-main ms-auto text-white border-0">submit</button>
+    <button *ngIf="isLoading" class="btn d-block bg-main ms-auto text-white border-0" type="button" disabled>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     </button>
   </form>
 </div>
