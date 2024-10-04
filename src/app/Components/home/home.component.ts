@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductDTO } from 'src/app/Interfaces/product-dto';
 import { Products } from 'src/app/Interfaces/products';
 import { ProductsService } from 'src/app/Services/products.service';
 
@@ -8,13 +9,15 @@ import { ProductsService } from 'src/app/Services/products.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  products: Products[] = [];
+  ProductDTO: ProductDTO[] = [];
 
   constructor(private _productsService: ProductsService) {}
   ngOnInit(): void {
     this._productsService.getProduct().subscribe({
       next: (res) => {
-        this.products = res;
+        console.log(res);
+
+        this.ProductDTO = res.data;
       },
     });
   }

@@ -15,6 +15,7 @@ import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     NotfoundComponent,
     RegisterComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

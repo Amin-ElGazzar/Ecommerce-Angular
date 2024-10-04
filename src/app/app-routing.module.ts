@@ -11,6 +11,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { authGuard } from './Gards/auth.guard';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,6 +19,11 @@ const routes: Routes = [
   { path: 'about', canActivate: [authGuard], component: AboutComponent },
   { path: 'cart', canActivate: [authGuard], component: CartComponent },
   { path: 'brands', canActivate: [authGuard], component: BrandsComponent },
+  {
+    path: 'productDetails/:id',
+    canActivate: [authGuard],
+    component: ProductDetailsComponent,
+  },
   {
     path: 'categories',
     canActivate: [authGuard],
