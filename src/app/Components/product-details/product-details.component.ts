@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/Services/products.service';
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -20,10 +20,26 @@ export class ProductDetailsComponent implements OnInit {
     });
     this._productService.getProductDetails(this.productId).subscribe({
       next: (res) => {
-       
+        console.log(res.data);
         
         this.productDetails = res.data;
       },
     });
   }
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+      },
+    },
+    nav: true,
+  };
 }
