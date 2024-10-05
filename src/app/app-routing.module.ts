@@ -2,7 +2,6 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Components/home/home.component';
 import { AboutComponent } from './Components/about/about.component';
-import { CartComponent } from './Components/categories/cart/cart.component';
 import { BrandsComponent } from './Components/brands/brands.component';
 import { CategoriesComponent } from './Components/categories/categories.component';
 import { FooterComponent } from './Components/footer/footer.component';
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', canActivate: [authGuard], component: HomeComponent },
   { path: 'about', canActivate: [authGuard], component: AboutComponent },
-  { path: 'cart', canActivate: [authGuard], component: CartComponent },
   { path: 'brands', canActivate: [authGuard], component: BrandsComponent },
   {
     path: 'productDetails/:id',
