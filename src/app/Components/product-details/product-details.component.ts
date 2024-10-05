@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/Services/products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CartService } from 'src/app/Services/cart.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -12,7 +13,8 @@ export class ProductDetailsComponent implements OnInit {
   productDetails: any;
   constructor(
     private _productService: ProductsService,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _cartService:CartService
   ) {}
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((par) => {
@@ -42,4 +44,13 @@ export class ProductDetailsComponent implements OnInit {
     },
     nav: true,
   };
+
+  addToCart(productId:string){
+    return this._cartService.addToCart(productId).subscribe({
+      next:(res)=>{
+        console.log(res);
+        
+      }
+    })
+  }
 }
