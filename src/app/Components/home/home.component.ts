@@ -10,7 +10,7 @@ import { ProductsService } from 'src/app/Services/products.service';
 })
 export class HomeComponent implements OnInit {
   ProductDTO: ProductDTO[] = [];
-
+  searchText: string = '';
   constructor(private _productsService: ProductsService) {}
   ngOnInit(): void {
     this._productsService.getProduct().subscribe({

@@ -1,7 +1,10 @@
 <app-main-slider></app-main-slider>
 <app-categories></app-categories>
 <div class="row">
-  <div *ngFor="let item of ProductDTO" class="col-md-2">
+  <div>
+    <input [(ngModel)]="searchText" type="text" id="search" class="form-control w-75 mx-auto my-4 border-2">
+  </div>
+  <div *ngFor="let item of ProductDTO |search:searchText" class="col-md-2">
     <div class="product px-2 py-4">
       <a [routerLink]="['/productDetails', item._id]">
         <img src="{{ item.imageCover }}" class="w-100" style="height: 200px" />
@@ -19,7 +22,7 @@
       </div>
 
       <h3 class="h6 fw-bolder mt-2">
-        {{ item.title.split(" ").slice(0, 2).join(" ") }}
+        {{ item.title | sliceText }}
       </h3>
       <div class="d-flex justify-content-between">
         <span class="text-muted font-sm">{{ item.price }} EGY</span>

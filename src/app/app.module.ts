@@ -13,12 +13,14 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { LoginComponent } from './Components/login/login.component';
 import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { RegisterComponent } from './Components/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainSliderComponent } from './Components/main-slider/main-slider.component';
+import { SliceTextPipe } from './Pipes/slice-text.pipe';
+import { SearchPipe } from './Pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { MainSliderComponent } from './Components/main-slider/main-slider.compon
     RegisterComponent,
     ProductDetailsComponent,
     MainSliderComponent,
+    SliceTextPipe,
+    SearchPipe,
   
   ],
   imports: [
@@ -43,6 +47,7 @@ import { MainSliderComponent } from './Components/main-slider/main-slider.compon
     ReactiveFormsModule,
     HttpClientModule,
     CarouselModule,
+    FormsModule,
     BrowserAnimationsModule,
   ],
   providers: [],
