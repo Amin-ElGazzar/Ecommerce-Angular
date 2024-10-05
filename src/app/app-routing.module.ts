@@ -31,6 +31,11 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: 'setting',
+    loadChildren: () =>
+      import('./setting/setting.module').then((m) => m.SettingModule),
+  },
   { path: '**', component: NotfoundComponent },
 ];
 
