@@ -1,5 +1,6 @@
 <div class="bg-main-light p-4 my-4">
     <h3>Shop Cart</h3>
+    <h6 class="text-main text-end">Total Price : {{cardProducts?.totalCartPrice |currency:' EGP '}} </h6>
     <div class="row my-3 py-2 border-bottom align-items-center" *ngFor="let product of cardProducts?.products">
         <div class="col-md-1">
             <img class="w-100" [src]="product.product.imageCover" alt="">
@@ -20,5 +21,5 @@
             </div>
         </div>
     </div>
-    <h6 class="text-main text-end">Total Price : {{cardProducts?.totalCartPrice |currency:' EGP '}} </h6>
+    <button routerLink="/cart/paymentInfo" class="btn bg-main text-white m-3">Payment Online</button>
 </div>

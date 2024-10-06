@@ -17,8 +17,8 @@ export class LoginComponent {
     }
   }
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [
+    email: new FormControl('masr777@gmail.com', [Validators.required, Validators.email]),
+    password: new FormControl('123456', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(14),

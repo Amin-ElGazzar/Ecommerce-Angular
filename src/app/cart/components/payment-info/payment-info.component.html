@@ -1,0 +1,21 @@
+<section>
+    <div class="w-75 py-4 mx-auto">
+      <h1 class="text-main fs-2 pt-4">Payment-Info</h1>
+      <form [formGroup]="shippingAddress" (ngSubmit)="goToPayment(shippingAddress)">
+        <div class="form-group">
+          <label for="details">details:</label>
+          <input formControlName="details" type="text" id="details" class="form-control my-2">
+        </div>
+        <div class="form-group">
+          <label for="phone">phone:</label>
+          <input formControlName="phone" type="tel" id="phone" class="form-control my-2">
+        </div>
+        <div class="form-group">
+          <label for="city">city:</label>
+          <input formControlName="city" type="text" id="city" class="form-control my-2">
+        </div>
+        <button  type="submit" class="btn bg-main text-white m-auto" >Submit</button>
+      </form>
+    </div>
+  </section>
+  

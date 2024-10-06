@@ -10,7 +10,7 @@ export class CartService {
   headers: any = {
     token: localStorage.getItem('userToken'),
   };
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) { }
 
   addToCart(productId: string): Observable<any> {
     return this._httpClient.post(
@@ -37,5 +37,13 @@ export class CartService {
     return this._httpClient.delete(`${baseUrl}/api/v1/cart/${productId}`, {
       headers: this.headers,
     });
+  }
+
+  onlinePayment(shippingAddress: any, url: string, cartId: any) {
+    return this._httpClient.post(`${baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${url}/home`,
+      { shippingAddress: shippingAddress },
+      {
+        headers: this.headers,
+      });
   }
 }
