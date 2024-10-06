@@ -17,7 +17,7 @@ export class AuthService {
     }
   }
   register(model: object): Observable<any> {
-    return this._httpClient.post('${baseUrl}/api/v1/auth/signup', model);
+    return this._httpClient.post(`${baseUrl}/api/v1/auth/signup`, model);
   }
 
   login(model: object): Observable<any> {

@@ -8,14 +8,21 @@ import { baseUrl } from '../Const/Environment';
 })
 export class CartService {
   headers: any = {
-    Token: localStorage.getItem('userToken'),
+    token: localStorage.getItem('userToken'),
   };
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) { console.log(this.headers);
+  }
   addToCart(productId: string): Observable<any> {
     return this._httpClient.post(
       `${baseUrl}/api/v1/cart`,
       { productId: productId },
       { headers: this.headers }
     );
+  }
+
+  getUserCart(): Observable<any> {
+    return this._httpClient.get(`${baseUrl}/api/v1/cart`, {
+      headers: this.headers,
+    });
   }
 }

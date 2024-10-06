@@ -4,7 +4,7 @@
   <div class="alert alert-danger" *ngIf="backendError.length > 0">
     {{ backendError }}
   </div>
-  <form (ngSubmit)="(registerForm)" [formGroup]="registerForm">
+  <form (ngSubmit)="handleRegister(registerForm)" [formGroup]="registerForm">
     <div class="form-group">
       <label for="name">Name :</label>
       <input

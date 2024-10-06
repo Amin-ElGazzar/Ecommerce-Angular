@@ -34,6 +34,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./setting/setting.module').then((m) => m.SettingModule),
   },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
+  },
   { path: '**', component: NotfoundComponent },
 ];
 
