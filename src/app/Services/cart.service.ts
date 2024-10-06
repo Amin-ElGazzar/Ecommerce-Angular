@@ -10,8 +10,8 @@ export class CartService {
   headers: any = {
     token: localStorage.getItem('userToken'),
   };
-  constructor(private _httpClient: HttpClient) { console.log(this.headers);
-  }
+  constructor(private _httpClient: HttpClient) {}
+
   addToCart(productId: string): Observable<any> {
     return this._httpClient.post(
       `${baseUrl}/api/v1/cart`,
@@ -20,9 +20,17 @@ export class CartService {
     );
   }
 
-  getUserCart(): Observable<any> {
+  getCartItems(): Observable<any> {
     return this._httpClient.get(`${baseUrl}/api/v1/cart`, {
       headers: this.headers,
     });
+  }
+
+  updateItemCount(productId: string, count: number): Observable<any> {
+    return this._httpClient.put(
+      `${baseUrl}/api/v1/cart/${productId}`,
+      { count: count },
+      { headers: this.headers }
+    );
   }
 }

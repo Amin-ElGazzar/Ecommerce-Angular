@@ -11,9 +11,11 @@
                 <button class=" btn m-0 p-0"><i class="fa-regular text-main fa-trash-can"></i> Remove</button>
             </div>
             <div>
-              <button class="btn border-main btn-sm">-</button>
-              <span class="mx-2">{{product.count}}</span>
-              <button class="btn border-main btn-sm">+</button>
+                <button (click)="updateItemCount(product.product._id,product.count -1)"
+                    class="btn border-main btn-sm">-</button>
+                <span class="mx-2">{{product.count}}</span>
+                <button (click)="updateItemCount(product.product._id,product.count +1)"
+                    class="btn border-main btn-sm">+</button>
             </div>
         </div>
     </div>
