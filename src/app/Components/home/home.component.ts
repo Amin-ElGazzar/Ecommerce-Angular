@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private _productsService: ProductsService,
     private _cartService: CartService
-  ) {}
+  ) { }
   ngOnInit(): void {
     this._productsService.getProduct().subscribe({
       next: (res) => {
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   addToCart(productId: string) {
     return this._cartService.addToCart(productId).subscribe({
       next: (res) => {
-        console.log(res);
+        this._cartService.cartItemNumber.next(res.numOfCartItems)
       },
     });
   }

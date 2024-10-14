@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar  navbar-expand-sm navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="#"><img src="./assets/Images/freshcart-logo.svg" alt="logo image" /></a>
 
@@ -7,9 +7,7 @@
         <li *ngIf="isLogin" class="nav-item">
           <a class="nav-link" routerLink="home">Home</a>
         </li>
-        <li *ngIf="isLogin" class="nav-item">
-          <a class="nav-link" routerLink="cart">Cart</a>
-        </li>
+
         <li *ngIf="isLogin" class="nav-item">
           <a class="nav-link" routerLink="products">Products</a>
         </li>
@@ -37,6 +35,12 @@
         </li>
         <li (click)="LogOut()" *ngIf="isLogin" class="nav-item ">
           <span class="nav-link cursor-pointer">LogOut</span>
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a class="nav-link position-relative" routerLink="cart">
+             <i class="fas fa-cart-shopping text-main fa-lg"></i>
+            <span class="badge bg-main text-white position-absolute top-0 end-0">{{cartNumber}}</span>
+          </a>
         </li>
         <li *ngIf="isLogin" class="nav-item ">
           <a routerLink="setting" class="nav-link cursor-pointer">Setting</a>
