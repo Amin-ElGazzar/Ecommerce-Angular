@@ -7,9 +7,7 @@ import { baseUrl } from '../Const/Environment';
   providedIn: 'root',
 })
 export class CartService {
-  headers: any = {
-    token: localStorage.getItem('userToken'),
-  };
+ 
   cartItemNumber = new BehaviorSubject(0)
   constructor(private _httpClient: HttpClient) {
     this.getCartItems().subscribe({
@@ -22,35 +20,26 @@ export class CartService {
   addToCart(productId: string): Observable<any> {
     return this._httpClient.post(
       `${baseUrl}/api/v1/cart`,
-      { productId: productId },
-      { headers: this.headers }
+      { productId: productId }
     );
   }
 
   getCartItems(): Observable<any> {
-    return this._httpClient.get(`${baseUrl}/api/v1/cart`, {
-      headers: this.headers,
-    });
+    return this._httpClient.get(`${baseUrl}/api/v1/cart`);
   }
 
   updateItemCount(productId: string, count: number): Observable<any> {
     return this._httpClient.put(
       `${baseUrl}/api/v1/cart/${productId}`,
-      { count: count },
-      { headers: this.headers }
+      { count: count }
     );
   }
   deleteCartItem(productId: string): Observable<any> {
-    return this._httpClient.delete(`${baseUrl}/api/v1/cart/${productId}`, {
-      headers: this.headers,
-    });
+    return this._httpClient.delete(`${baseUrl}/api/v1/cart/${productId}`);
   }
 
   onlinePayment(shippingAddress: any, url: string, cartId: any) {
     return this._httpClient.post(`${baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${url}/home`,
-      { shippingAddress: shippingAddress },
-      {
-        headers: this.headers,
-      });
+      { shippingAddress: shippingAddress });
   }
 }

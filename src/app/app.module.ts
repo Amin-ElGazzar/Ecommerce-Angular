@@ -13,20 +13,21 @@ import { LoginComponent } from './Components/login/login.component';
 import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainSliderComponent } from './Components/main-slider/main-slider.component';
 import { SliceTextPipe } from './Pipes/slice-text.pipe';
 import { SearchPipe } from './Pipes/search.pipe';
+import { HeaderInterceptor } from './Interceptor/header.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     BrandsComponent,
- 
+
     CategoriesComponent,
     FooterComponent,
     HomeComponent,
@@ -38,7 +39,7 @@ import { SearchPipe } from './Pipes/search.pipe';
     MainSliderComponent,
     SliceTextPipe,
     SearchPipe,
-  
+
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,11 @@ import { SearchPipe } from './Pipes/search.pipe';
     FormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HeaderInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
