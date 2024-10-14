@@ -39,8 +39,18 @@ export class RegisterComponent {
       Validators.required,
       Validators.pattern('01[0125][0-9]{8}'),
     ]),
-  });
+  }, { validators: this.rePasswordMatch });
 
+  rePasswordMatch(registerForm: any) {
+    let passwordControl = registerForm.get('password')
+    let rePasswordControl = registerForm.get('rePassword')
+    if (passwordControl?.value === rePasswordControl?.value) {
+      return null
+    } else {
+      rePasswordControl?.setErrors({ passwordMatch: 'password and rePassword not matched' })
+      return { passwordMatch: 'password and rePassword not matched' }
+    }
+  }
   handleRegister(registerForm: FormGroup) {
     console.log('res');
 
